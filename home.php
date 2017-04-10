@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
   <title>Rali's page</title>
   <meta name="description" content="website description" />
@@ -42,30 +41,31 @@
     </div>
     <div id="site_content">
     <h3>Search</h3>
-    <form action="search.php" method="post">
+<!--     <form method="post" action="edit-record.php?id='. $row['id'].'"> -->
+    <form action="search.php?id='.$row['ID'].'" method="get">
 		<input type="text" name="search" value = "Enter keywords"/>
 		<input type="submit" name="submit" value="Search">
 	</form>
 	<?php
-// 	$user = 'root';
-// 	$pass = '';
-// 	$db = 'articles';
-// 	$search_value = "";
-// 	$conn = new mysqli('localhost', $user, $pass, $db);
+//  	$user = 'root';
+//  	$pass = '';
+//  	$db = 'articles';
+//  	$id = "";
+//  	$conn = new mysqli('localhost', $user, $pass, $db);
 	
-// 	if ($conn->connect_error) {
-// 		die("Connection failed: " . $conn->connect_error);
-// 	}
-// // 	$search_value=$_POST["search"];
-// 	if(isset($_POST['submit'])){ 
-// 		if($conn->connect_error){
-//    			 echo 'Connection Faild: '.$conn->connect_error;
+//  	if ($conn->connect_error) {
+//  		die("Connection failed: " . $conn->connect_error);
+//  	}
+//  	$id=$_GET["id"];
+//  	if(isset($_GET['submit'])){ 
+//  		if($conn->connect_error){
+//     			 echo 'Connection Faild: '.$conn->connect_error;
 //     	}else{
-//     		$search_value=$_POST["search"];
-//         	$sql="select * from images where Description like '%$search_value%'";
-//        		$result=$conn->query($sql)or die($conn->error);;
-//        		if ($result->num_rows > 0) {
-//        		?>
+//     		$id=$_GET["ID"];
+//     		$sql="select * from images where Description like '%$search_value%'";
+//     		$result=$conn->query($sql)or die($conn->error);;
+//         		if ($result->num_rows > 0) {
+        		?>
 <!--        		<ul> -->
        		<?php 
 //         	while($row=$result->fetch_assoc()){

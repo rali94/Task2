@@ -40,8 +40,8 @@ $conn = new mysqli('localhost', $user, $pass, $db);
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
-$search_value=$_POST["search"];
-if(isset($_POST['submit'])){
+$search_value=$_GET["search"];
+if(isset($_GET['submit'])){
 	if($conn->connect_error){
 		echo 'Connection Faild: '.$conn->connect_error;
 	}else{
@@ -52,10 +52,14 @@ if(isset($_POST['submit'])){
        		<ul>
        		<?php 
         	while($row=$result->fetch_assoc()){
-            	?>
-            	<li> <h2> <?php echo $row["Description"] ?> </h2> 
-            	<img src="images/<?php echo $row['FileName']?>"></li>
-<!--             	echo 'File name'.$row["FileName"]; -->
+//         		echo "<p><strong>Location:</strong>&nbsp;<a href='"
+// 		.$results['Location']."' target='_blank'>".$results['SchoolLocation']."</a>".$results['text']."</p><br />";
+// <!--             	echo '<a href="php page which you want to display on click">$info['descr']</a>' -->
+// <!-- '<a href="'.$info['descr'].'">bla link</a>' -->
+        	    echo "<li><a href='innerpage.php'>".$row['Description']."</a></li>";
+        	    ?>
+             	<img src="images/<?php echo $row["FileName"]?>">
+ <!--             	echo 'File name'.$row["FileName"]; -->
      <?php       	} 
            	?> 
            	</ul>

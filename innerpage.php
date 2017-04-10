@@ -31,7 +31,7 @@
     <div id="content_header"></div>
     <div id="site_content">
         <h3>Search</h3>
-         <form action="search.php" method="post">
+         <form action="search.php" method="get">
 			<input type="text" name="search" value = "Enter keywords"/>
 			<input type="submit" name="submit" value="Search">
 			</form>
@@ -48,16 +48,17 @@
          if ($conn->connect_error) {
          	die("Connection failed: " . $conn->connect_error);
          }else{
-//          		$sql="SELECT * FROM articles WHERE ID1 = ".$id;
-         		$sql ="SELECT * FROM articles LEFT JOIN images ON articles.ID1 = images.ID
-				WHERE ID1 = ".$id;
+        		$sql ="SELECT * FROM articles LEFT JOIN images ON articles.ID1 = images.ID
+ 				WHERE ID1 = ".$id;
+// 				$sql = "SELECT * FROM articles LEFT JOIN images ON articles.ImageID = images.FileName
+// 				WHERE ID1=".$id;
          		$result=$conn->query($sql)or die($conn->error);
          		if ($result->num_rows > 0) {
                  	while($row=$result->fetch_assoc()){
                      	?>
                    	<h2> <?php echo $row["Title"] ?> </h2> 
                    	<h1> <?php echo $row["Description1"]?></h1>
-    				<img src="images/<?php echo $row['FileName']?>">
+    				<img src="images/<?php echo $row["FileName"]?>">
         <!--             	echo 'File name'.$row["FileName"]; -->
              <?php      
                  	} 
@@ -67,7 +68,19 @@
              		echo "0 results";
              	}
              	}
-                 $conn->close();
+//              	if(isset())
+				$search_value=$_GET["search"];
+//              	$id = $_GET['search'];
+             	$sql2 = "SELECT Description1 FROM articles WHERE Title like '%$search_value%'";
+             	$result=$conn->query($sql2)or die($conn->error);;
+             	if ($result->num_rows > 0) {
+             		while($row=$result->fetch_assoc()){
+             			echo $row['Description1'];
+             		}
+             	} else {
+    				echo "0 results";
+    			}
+             	$conn->close();
          ?>
       </div>
     </div>
