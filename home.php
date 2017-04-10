@@ -33,74 +33,19 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="index.php">Home</a></li>
-          <li><a href="search.php">Search</a></li>
-          <li><a href="innerpage.php">Inner Page</a></li>
+          <li class="selected"><a href="index.php?page=1">Home</a></li>
+          <li><a href="index.php?page=2">Search</a></li>
+          <li><a href="index.php?page=3">Inner Page</a></li>
         </ul>
       </div>
     </div>
     <div id="site_content">
     <h3>Search</h3>
 <!--     <form method="post" action="edit-record.php?id='. $row['id'].'"> -->
-    <form action="search.php?id='.$row['ID'].'" method="get">
+    <form action="index.php?page=2" method="get">
 		<input type="text" name="search" value = "Enter keywords"/>
 		<input type="submit" name="submit" value="Search">
 	</form>
-	<?php
-//  	$user = 'root';
-//  	$pass = '';
-//  	$db = 'articles';
-//  	$id = "";
-//  	$conn = new mysqli('localhost', $user, $pass, $db);
-	
-//  	if ($conn->connect_error) {
-//  		die("Connection failed: " . $conn->connect_error);
-//  	}
-//  	$id=$_GET["id"];
-//  	if(isset($_GET['submit'])){ 
-//  		if($conn->connect_error){
-//     			 echo 'Connection Faild: '.$conn->connect_error;
-//     	}else{
-//     		$id=$_GET["ID"];
-//     		$sql="select * from images where Description like '%$search_value%'";
-//     		$result=$conn->query($sql)or die($conn->error);;
-//         		if ($result->num_rows > 0) {
-        		?>
-<!--        		<ul> -->
-       		<?php 
-//         	while($row=$result->fetch_assoc()){
-//             	?>
-  <!--           	<li> <h2> <?php echo $row["Description"] ?> </h2> -->
-     <!--        	<img src="images/<?php echo $row['FileName']?>"></li> -->
-     <?php       
-// } 
-           	?> 
-<!--            	</ul> -->
-           	<?php 
-//     	} else {
-//     		echo "0 results";
-//     	}
-//     	}
-// 	}
-//         $conn->close();
-        
-//         $sql = "SELECT ID1, Name,ImageID FROM articles";
-//         $result = $conn->query($sql);
-        
-//         if ($result->num_rows > 0) {
-//         	while($row = $result->fetch_assoc()) {
-//         		echo "id: " . $row["ID1"]. " - Name: " . $row["Name"]. " " . $row["ImageID"]. "<br>";
-//         	}
-//         } else {
-//         	echo "0 results";
-//         }
-?>
-<!--         <h3>Search</h3> -->
-<!--         <form method="post" action="#" id="search_form"> -->
-<!--           <p> -->
-<!--             <input class="search" type="text" name="search_field" value="Enter keywords....." /> -->
-<!--           <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" /> -->
-<!--           </p> -->
       <div id="content">
 		        <div id="myCarousel" class="carousel slide" data-ride="carousel">
 		  <!-- Indicators -->
@@ -141,7 +86,6 @@
 		  </a>
 		</div>
     </div>
-     </form>
       </div>
     </div>
 </body>

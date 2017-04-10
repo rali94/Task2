@@ -22,19 +22,20 @@
 <div id="menubar">
 <ul id="menu">
 <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index.php">Home</a></li>
-          <li><a href="search.php">Search</a></li>
-          <li class="selected"><a href="innerpage.php"> Inner Page</a></li>
+          <li><a href="index.php?page=1">Home</a></li>
+          <li><a href="index.php?page=2">Search</a></li>
+          <li class="selected"><a href="index.php?page=3"> Inner Page</a></li>
         </ul>
       </div>
     </div>
     <div id="content_header"></div>
     <div id="site_content">
         <h3>Search</h3>
-         <form action="search.php" method="get">
+         <form action="index.php" method="get">
+         	<input type= "hidden" name="page" value="2"/>
 			<input type="text" name="search" value = "Enter keywords"/>
 			<input type="submit" name="submit" value="Search">
-			</form>
+		</form>
 <!--       </div> -->
 <!--       <div id="content"> -->
         <!-- insert the page content here -->
