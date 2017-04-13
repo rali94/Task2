@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
   .carousel-inner > .item > img,
@@ -40,12 +41,11 @@
       </div>
     </div>
     <div id="site_content">
-    <h3>Search</h3>
-<!--     <form method="post" action="edit-record.php?id='. $row['id'].'"> -->
-    <form action="index.php?page=2" method="get">
-		<input type="text" name="search" value = "Enter keywords"/>
-		<input type="submit" name="submit" value="Search">
-	</form>
+    <?php 
+    session_start();
+    include 'searchForm.php';
+    ?>
+	</script>
       <div id="content">
 		        <div id="myCarousel" class="carousel slide" data-ride="carousel">
 		  <!-- Indicators -->

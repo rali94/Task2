@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE HTML>
 <html>
 
@@ -7,6 +9,7 @@
 <meta name="keywords" content="website keywords, website keywords" />
 <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
@@ -30,15 +33,9 @@
     </div>
     <div id="content_header"></div>
     <div id="site_content">
-        <h3>Search</h3>
-         <form action="index.php" method="get">
-         	<input type= "hidden" name="page" value="2"/>
-			<input type="text" name="search" value = "Enter keywords"/>
-			<input type="submit" name="submit" value="Search">
-		</form>
-<!--       </div> -->
-<!--       <div id="content"> -->
-        <!-- insert the page content here -->
+      <?php 
+      include 'searchForm.php';
+      ?>
         <h1>Articles</h1>
         <?php 
          $user = 'root';
@@ -57,8 +54,8 @@
          		if ($result->num_rows > 0) {
                  	while($row=$result->fetch_assoc()){
                      	?>
-                   	<h2> <?php echo $row["Title"] ?> </h2> 
-                   	<h1> <?php echo $row["Description1"]?></h1>
+                   	<?php echo $row["Title"] ?> 
+                   	<?php echo $row["Description1"]?>
     				<img src="images/<?php echo $row["FileName"]?>">
         <!--             	echo 'File name'.$row["FileName"]; -->
              <?php      
@@ -68,19 +65,7 @@
          		} else {
              		echo "0 results";
              	}
-             	}
-//              	if(isset())
-				$search_value=$_GET["search"];
-//              	$id = $_GET['search'];
-             	$sql2 = "SELECT Description1 FROM articles WHERE Title like '%$search_value%'";
-             	$result=$conn->query($sql2)or die($conn->error);;
-             	if ($result->num_rows > 0) {
-             		while($row=$result->fetch_assoc()){
-             			echo $row['Description1'];
-             		}
-             	} else {
-    				echo "0 results";
-    			}
+            }
              	$conn->close();
          ?>
       </div>

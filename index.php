@@ -1,4 +1,5 @@
 <?php
+session_start();
 // $id = $_GET['id'];
 switch($_GET['page']){
 	case 1: include 'home.php';break;

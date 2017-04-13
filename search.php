@@ -1,36 +1,6 @@
-<!DOCTYPE HTML>
-<html>
 
-<head>
-<title>Rali's search page</title>
-<meta name="description" content="website description" />
-<meta name="keywords" content="website keywords, website keywords" />
-<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-<link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
-</head>
-
-<body>
-<div id="main">
-	<div id="header">
-		<div id="logo">
-			<div id="logo_text">
-<!-- class="logo_colour", allows you to change the colour of the text -->
-				<h1><a href="index.php">colour<span class="logo_colour">purple</span></a></h1>
-				<h2>IL Web</h2>
-			</div>
-		</div>
-	<div id="menubar">
-		<ul id="menu">
-<!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index.php?page=1">Home</a></li>
-          <li class="selected"><a href="index.php?page=2">Search</a></li>
-          <li><a href="index.php?page=3"> Inner Page</a></li>
-        </ul>
-    </div>
-    </div>
-    <div id="content_header"></div>
-    	<div id="site_content">
 <?php
+
 $user = 'root';
 $pass = '';
 $db = 'articles';
@@ -41,7 +11,12 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 $search_value=$_GET["search"];
-if(isset($_GET['submit'])){
+$_SESSION['search'] = $_GET['search'];
+// if(isset($_SESSION['search'])){
+// 	?>
+<!-- <input id="searchPhrase" type="text" name="search" value = "<?php // echo $_SESSION['search'];?>"/> -->
+	<?php 
+// }
 	if($conn->connect_error){
 		echo 'Connection Faild: '.$conn->connect_error;
 	}else{
@@ -51,24 +26,28 @@ if(isset($_GET['submit'])){
 			?>
        		<ul>
        		<?php 
-        	while($row=$result->fetch_assoc()){
-        	    echo "<li><a href='innerpage.php'>".$row['Description']."</a></li>";
+        		while($row=$result->fetch_assoc()){
+        			if(($row['ID']==1)||($row['ID']==3)||($row['ID']==5)){
+        	 	   		echo "<li><a href='index.php?page=3&id={$row['ID']}'>".$row['Description']."</a></li>";
+        	 	   ?>		<img src="images/<?php echo $row["FileName"]?>">
+<?php 				}else{
+        				echo "<li> ".$row['Description']."</li>";
+        				?>
+        				<img src="images/<?php echo $row["FileName"]?>">
+        	<?php 	}
         	    ?>
-             	<img src="images/<?php echo $row["FileName"]?>">
+
 <?php       	} 
            	?> 
            	</ul>
            	<?php 
-    	} else {
+    	}else {
     		echo "0 results";
     	}
     }
-}
+//}
+
         $conn->close();
-?>
-	</div>
-</div>
-</body>
-</html>
+?>test
 
 
