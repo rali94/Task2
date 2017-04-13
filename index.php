@@ -1,6 +1,5 @@
 <?php
-session_start();
-// $id = $_GET['id'];
+// session_start();
 switch($_GET['page']){
 	case 1: include 'home.php';break;
 	default:include 'home.php';break;

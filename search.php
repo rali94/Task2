@@ -1,6 +1,5 @@
 
 <?php
-
 $user = 'root';
 $pass = '';
 $db = 'articles';
@@ -10,17 +9,20 @@ $conn = new mysqli('localhost', $user, $pass, $db);
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
-$search_value=$_GET["search"];
-$_SESSION['search'] = $_GET['search'];
-// if(isset($_SESSION['search'])){
-// 	?>
+$cookieSearch = "search";
+$cookie_value = $_GET['search'];
+setcookie($cookieSearch, $cookie_value, time() + (86400 * 30), "/");
+// $search_value=$_GET["search"];
+// $_SESSION['search'] = $_GET['search'];
+$_COOKIE["search"]=$cookie_value;
+	?>
 <!-- <input id="searchPhrase" type="text" name="search" value = "<?php // echo $_SESSION['search'];?>"/> -->
 	<?php 
 // }
 	if($conn->connect_error){
 		echo 'Connection Faild: '.$conn->connect_error;
 	}else{
-		$sql="select * from images where Description like '%$search_value%'";
+		$sql="select * from images where Description like '%$cookie_value%'";
 		$result=$conn->query($sql)or die($conn->error);;
 		if ($result->num_rows > 0) {
 			?>
